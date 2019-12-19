@@ -9,8 +9,12 @@ require('./bootstrap');
 
 
 window.Vue = require('vue');
+
 import moment from 'moment';
+import Gate from "./Gate";
+Vue.prototype.$gate = new Gate(window.user);
 import { Form, HasError, AlertError } from 'vform';
+
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
@@ -40,10 +44,34 @@ const Toast = Swal.mixin({
 
 const routes = [
     { path: '/dashboard', component:require('./components/Dashboard.vue').default },
+    { path: '/devloper', component:require('./components/Devloper.vue').default },
     { path: '/users', component:require('./components/Users.vue').default  },
     { path: '/profile', component:require('./components/Profile.vue').default  }
   ]
 
+  // start component  passport
+
+  Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
+
+
+Vue.component(
+    'not-found',
+    require('./components/NoteFound.vue').default
+);
+  //end component passport
 
     Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 

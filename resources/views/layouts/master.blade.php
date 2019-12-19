@@ -64,6 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->name}}</a>
+          <p style="color:white">{{Auth::user()->type}}</p>
         </div>
       </div>
 
@@ -84,9 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-
-
-
+            @can('isAdmin')
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-cogs blue"></i>
@@ -110,6 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+          @endcan
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -129,6 +129,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
             <li>
+                      @can('isAdmin')
+                    <li class="nav-item has-treeview ">
+                            <router-link to="/devloper" class="nav-link ">
+                              <i class="nav-icon fas fa-cog"></i>
+                              <p>
+                                Devloper
+
+                              </p>
+                            </router-link>
+                            <li>
+                                @endcan
+
+
+
 
 
 
@@ -188,7 +202,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </footer>
 </div>
 <!-- ./wrapper -->
-
+@auth
+<script>
+window.user=@json(auth()->user());
+</script>
+@endauth
 <!-- REQUIRED SCRIPTS -->
 
 <script  src="/js/app.js"></script>
